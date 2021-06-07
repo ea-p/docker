@@ -1,17 +1,17 @@
 version: '3.3'
 
 services:
-  fireflyiii:
-    image: jc5x/firefly-iii:latest
+  app:
+    image: fireflyiii/core:latest
     volumes:
       - firefly_iii_upload:/var/www/firefly-iii/storage/upload
     env_file: .env
     ports:
       - 8513:8080
     depends_on:
-      - fireflyiiidb
-  fireflyiiidb:
-    image: yobasystems/alpine-mariadb:latest
+      - db
+  db:
+    image: mariadb
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
       - MYSQL_USER=firefly
